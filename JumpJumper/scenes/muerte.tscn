@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn7igfw6x1uim"]
+
+[ext_resource type="Script" path="res://scripts/muerte.gd" id="1_gjrv6"]
+[ext_resource type="AudioStream" uid="uid://bq563eapdwsnp" path="res://assets/sounds/hurt.wav" id="2_yivuw"]
+
+[node name="Muerte" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_gjrv6")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_yivuw")
+volume_db = 9.369
+attenuation = 0.466517
+panning_strength = 1.03
+bus = &"SFX"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
